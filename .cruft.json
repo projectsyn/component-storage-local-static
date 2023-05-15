@@ -1,0 +1,25 @@
+{
+  "template": "https://github.com/projectsyn/commodore-component-template.git",
+  "commit": "c04b1bb1bb5d0a89c8582c3608724217a27b5aa0",
+  "checkout": "main",
+  "context": {
+    "cookiecutter": {
+      "name": "storage-local-static",
+      "slug": "storage-local-static",
+      "parameter_key": "storage_local_static",
+      "test_cases": "defaults",
+      "add_lib": "n",
+      "add_pp": "n",
+      "add_golden": "y",
+      "add_matrix": "y",
+      "add_go_unit": "n",
+      "copyright_holder": "VSHN AG <info@vshn.ch>",
+      "copyright_year": "2023",
+      "github_owner": "projectsyn",
+      "github_name": "component-storage-local-static",
+      "github_url": "https://github.com/projectsyn/component-storage-local-static",
+      "_template": "https://github.com/projectsyn/commodore-component-template.git"
+    }
+  },
+  "directory": null
+}

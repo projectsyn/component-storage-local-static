@@ -1,0 +1,5 @@
+= storage-local-static
+
+storage-local-static is a Commodore component to manage storage-local-static.
+
+See the xref:references/parameters.adoc[parameters] reference for further details.

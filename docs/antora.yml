@@ -1,0 +1,6 @@
+name: storage-local-static
+title: storage-local-static
+version: master
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/partials/nav.adoc

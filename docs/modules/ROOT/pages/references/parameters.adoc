@@ -1,0 +1,19 @@
+= Parameters
+
+The parent key for all of the following parameters is `storage_local_static`.
+
+== `namespace`
+
+[horizontal]
+type:: string
+default:: `syn-storage-local-static`
+
+The namespace in which to deploy this component.
+
+
+== Example
+
+[source,yaml]
+----
+namespace: example-namespace
+----
