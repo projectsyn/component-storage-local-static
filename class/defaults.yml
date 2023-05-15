@@ -2,3 +2,13 @@ parameters:
   storage_local_static:
     =_metadata: {}
     namespace: syn-storage-local-static
+
+    manifestsVersion: v2.3.4
+
+    deviceClasses: []
+    storageClasses: {}
+
+    helmValues:
+      common:
+        namespace: ${storage_local_static:namespace}
+      classes: ${storage_local_static:deviceClasses}
