@@ -1,5 +1,11 @@
 parameters:
   kapitan:
+    dependencies:
+      - type: git
+        source: https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner.git
+        subdir: helm/provisioner
+        ref: ${storage_local_static:manifestsVersion}
+        output_path: ${_base_directory}/helmcharts/storage-local-static/${storage_local_static:manifestsVersion}/
     compile:
       - input_paths:
           - ${_base_directory}/component/app.jsonnet
@@ -9,3 +15,13 @@ parameters:
           - ${_base_directory}/component/main.jsonnet
         input_type: jsonnet
         output_path: storage-local-static/
+      # Helmchart
+      - input_paths:
+          - ${_base_directory}/helmcharts/storage-local-static/${storage_local_static:manifestsVersion}
+        input_type: helm
+        output_path: storage-local-static/10_helmchart
+        helm_values: ${storage_local_static:helmValues}
+        helm_params:
+          name: local-volume-provisioner
+          namespace: ${storage_local_static:namespace}
+          dependency_update: false

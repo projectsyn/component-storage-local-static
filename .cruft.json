@@ -7,7 +7,7 @@
       "name": "storage-local-static",
       "slug": "storage-local-static",
       "parameter_key": "storage_local_static",
-      "test_cases": "defaults",
+      "test_cases": "defaults rancher",
       "add_lib": "n",
       "add_pp": "n",
       "add_golden": "y",

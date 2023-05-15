@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/node-selector: ''
+  labels:
+    app.kubernetes.io/name: localvolume-provisioner
+    name: localvolume-provisioner
+    openshift.io/cluster-monitoring: 'true'
+  name: localvolume-provisioner

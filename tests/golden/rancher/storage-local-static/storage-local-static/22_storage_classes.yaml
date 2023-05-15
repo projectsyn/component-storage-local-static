@@ -1,0 +1,25 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/instance: local-volume-provisioner
+    app.kubernetes.io/name: local-volume-provisioner
+    name: ssd
+  name: ssd
+provisioner: kubernetes.io/no-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/instance: local-volume-provisioner
+    app.kubernetes.io/name: local-volume-provisioner
+    name: ssd-retain
+  name: ssd-retain
+provisioner: kubernetes.io/no-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer

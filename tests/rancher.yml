@@ -1,0 +1,28 @@
+applications:
+  - storageclass
+
+parameters:
+  kapitan:
+    dependencies:
+      - type: https
+        source: https://raw.githubusercontent.com/projectsyn/component-storageclass/v1.0.0/lib/storageclass.libsonnet
+        output_path: vendor/lib/storageclass.libsonnet
+
+  storageclass:
+    defaults: {}
+    defaultClass: ""
+
+  storage_local_static:
+    namespace: localvolume-provisioner
+
+    deviceClasses:
+      - name: ssd
+        hostDir: /var/lib/rancher/local-volume/ssd/
+      - name: ssd-retain
+        hostDir: /var/lib/rancher/local-volume/ssd-retain/
+
+    storageClasses:
+      ssd:
+        reclaimPolicy: Delete
+      ssd-retain:
+        reclaimPolicy: Delete
