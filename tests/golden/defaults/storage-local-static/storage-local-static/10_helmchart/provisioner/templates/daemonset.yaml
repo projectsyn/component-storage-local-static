@@ -1,33 +1,25 @@
-apiVersion: v1
-data:
-  storageClassMap: ''
-kind: ConfigMap
-metadata:
-  labels:
-    chart: provisioner-2.3.4
-    heritage: Helm
-    release: local-volume-provisioner
-  name: local-provisioner-config
-  namespace: syn-storage-local-static
----
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   labels:
-    app: local-volume-provisioner
-    chart: provisioner-2.3.4
-    heritage: Helm
-    release: local-volume-provisioner
+    app.kubernetes.io/instance: local-volume-provisioner
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: provisioner
+    helm.sh/chart: provisioner-2.4.0
   name: local-volume-provisioner
   namespace: syn-storage-local-static
 spec:
   selector:
     matchLabels:
-      app: local-volume-provisioner
+      app.kubernetes.io/instance: local-volume-provisioner
+      app.kubernetes.io/name: provisioner
   template:
     metadata:
+      annotations:
+        checksum/config: 228dca796189f486b0d755102ef33a9f5b81ca859e7ef30f8abaa341fdd8b30e
       labels:
-        app: local-volume-provisioner
+        app.kubernetes.io/instance: local-volume-provisioner
+        app.kubernetes.io/name: provisioner
     spec:
       containers:
         - env:
@@ -40,9 +32,12 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: JOB_CONTAINER_IMAGE
-              value: quay.io/external_storage/local-volume-provisioner:v2.3.4
-          image: quay.io/external_storage/local-volume-provisioner:v2.3.4
+              value: k8s.gcr.io/sig-storage/local-volume-provisioner:v2.4.0
+          image: k8s.gcr.io/sig-storage/local-volume-provisioner:v2.4.0
           name: provisioner
+          ports:
+            - containerPort: 8080
+              name: metrics
           securityContext:
             privileged: true
           volumeMounts:
@@ -51,10 +46,10 @@ spec:
               readOnly: true
             - mountPath: /dev
               name: provisioner-dev
-      serviceAccountName: local-storage-admin
+      serviceAccountName: local-volume-provisioner
       volumes:
         - configMap:
-            name: local-provisioner-config
+            name: local-volume-provisioner-config
           name: provisioner-config
         - hostPath:
             path: /dev
