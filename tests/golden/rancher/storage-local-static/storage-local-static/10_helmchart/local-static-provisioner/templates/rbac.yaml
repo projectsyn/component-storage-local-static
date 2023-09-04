@@ -4,9 +4,9 @@ metadata:
   labels:
     app.kubernetes.io/instance: local-volume-provisioner
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: provisioner
-    helm.sh/chart: provisioner-2.6.0-alpha.1
-  name: local-volume-provisioner-node-clusterrole
+    app.kubernetes.io/name: local-static-provisioner
+    helm.sh/chart: local-static-provisioner-1.0.0
+  name: local-volume-provisioner-local-static-provisioner-node-clusterrole
 rules:
   - apiGroups:
       - ''
@@ -54,14 +54,14 @@ metadata:
   labels:
     app.kubernetes.io/instance: local-volume-provisioner
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: provisioner
-    helm.sh/chart: provisioner-2.6.0-alpha.1
-  name: local-volume-provisioner-node-binding
+    app.kubernetes.io/name: local-static-provisioner
+    helm.sh/chart: local-static-provisioner-1.0.0
+  name: local-volume-provisioner-local-static-provisioner-node-binding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: local-volume-provisioner-node-clusterrole
+  name: local-volume-provisioner-local-static-provisioner-node-clusterrole
 subjects:
   - kind: ServiceAccount
-    name: local-volume-provisioner
-    namespace: syn-storage-local-static
+    name: local-volume-provisioner-local-static-provisioner
+    namespace: localvolume-provisioner
