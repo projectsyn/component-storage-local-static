@@ -3,12 +3,14 @@ parameters:
     =_metadata: {}
     namespace: syn-storage-local-static
 
-    manifestsVersion: v2.4.0
+    manifestsVersion: v2.5.0
 
     deviceClasses: []
     storageClasses: {}
 
     helmValues:
+      daemonset:
+        image: registry.k8s.io/sig-storage/local-volume-provisioner:v2.5.0
       common:
         namespace: ${storage_local_static:namespace}
       classes: ${storage_local_static:deviceClasses}
