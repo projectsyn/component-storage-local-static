@@ -1,0 +1,52 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/instance: local-volume-provisioner
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: provisioner
+    helm.sh/chart: provisioner-2.4.0
+  name: local-volume-provisioner-node-clusterrole
+rules:
+  - apiGroups:
+      - ''
+    resources:
+      - nodes
+    verbs:
+      - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/instance: local-volume-provisioner
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: provisioner
+    helm.sh/chart: provisioner-2.4.0
+  name: local-volume-provisioner-pv-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:persistent-volume-provisioner
+subjects:
+  - kind: ServiceAccount
+    name: local-volume-provisioner
+    namespace: syn-storage-local-static
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/instance: local-volume-provisioner
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: provisioner
+    helm.sh/chart: provisioner-2.4.0
+  name: local-volume-provisioner-node-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: local-volume-provisioner-node-clusterrole
+subjects:
+  - kind: ServiceAccount
+    name: local-volume-provisioner
+    namespace: syn-storage-local-static

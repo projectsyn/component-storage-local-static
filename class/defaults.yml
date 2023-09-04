@@ -3,7 +3,7 @@ parameters:
     =_metadata: {}
     namespace: syn-storage-local-static
 
-    manifestsVersion: v2.3.4
+    manifestsVersion: v2.4.0
 
     deviceClasses: []
     storageClasses: {}
