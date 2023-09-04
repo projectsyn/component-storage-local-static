@@ -4,22 +4,22 @@ metadata:
   labels:
     app.kubernetes.io/instance: local-volume-provisioner
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: provisioner
-    helm.sh/chart: provisioner-2.6.0-alpha.1
-  name: local-volume-provisioner
+    app.kubernetes.io/name: local-static-provisioner
+    helm.sh/chart: local-static-provisioner-1.0.0
+  name: local-volume-provisioner-local-static-provisioner
   namespace: syn-storage-local-static
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/instance: local-volume-provisioner
-      app.kubernetes.io/name: provisioner
+      app.kubernetes.io/name: local-static-provisioner
   template:
     metadata:
       annotations:
-        checksum/config: 67965277d4fdf70b65790a591d481abde6804f6ba2f8becb8bb7d2c411e2010f
+        checksum/config: d5cc51490cc01ac84caa83af09f54d8e748cd4d027a1314886428ef690081860
       labels:
         app.kubernetes.io/instance: local-volume-provisioner
-        app.kubernetes.io/name: provisioner
+        app.kubernetes.io/name: local-static-provisioner
     spec:
       containers:
         - env:
@@ -32,8 +32,8 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: JOB_CONTAINER_IMAGE
-              value: registry.k8s.io/sig-storage/local-volume-provisioner:v2.5.0
-          image: registry.k8s.io/sig-storage/local-volume-provisioner:v2.5.0
+              value: registry.k8s.io/sig-storage/local-volume-provisioner:v2.6.0
+          image: registry.k8s.io/sig-storage/local-volume-provisioner:v2.6.0
           name: provisioner
           ports:
             - containerPort: 8080
@@ -48,10 +48,10 @@ spec:
               name: provisioner-dev
       nodeSelector:
         kubernetes.io/os: linux
-      serviceAccountName: local-volume-provisioner
+      serviceAccountName: local-volume-provisioner-local-static-provisioner
       volumes:
         - configMap:
-            name: local-volume-provisioner-config
+            name: local-volume-provisioner-local-static-provisioner-config
           name: provisioner-config
         - hostPath:
             path: /dev

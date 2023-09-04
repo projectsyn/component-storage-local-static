@@ -17,11 +17,6 @@ parameters:
         output_path: storage-local-static/
       # Helmchart
       - input_paths:
-          - ${_base_directory}/helmcharts/storage-local-static/${storage_local_static:manifestsVersion}/templates/daemonset_windows.yaml
-        input_type: remove
-        ignore_missing: true
-        output_path: .
-      - input_paths:
           - ${_base_directory}/helmcharts/storage-local-static/${storage_local_static:manifestsVersion}
         input_type: helm
         output_path: storage-local-static/10_helmchart
