@@ -5,9 +5,9 @@ metadata:
     app.kubernetes.io/instance: local-volume-provisioner
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: provisioner
-    helm.sh/chart: provisioner-2.4.0
+    helm.sh/chart: provisioner-2.6.0-alpha.1
   name: local-volume-provisioner
-  namespace: syn-storage-local-static
+  namespace: localvolume-provisioner
 spec:
   selector:
     matchLabels:
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 228dca796189f486b0d755102ef33a9f5b81ca859e7ef30f8abaa341fdd8b30e
+        checksum/config: 55dcbcfbcf9dfd134dac5f2452406598c23d03735d17e23c1c1a5efae2bc940d
       labels:
         app.kubernetes.io/instance: local-volume-provisioner
         app.kubernetes.io/name: provisioner
@@ -32,8 +32,8 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: JOB_CONTAINER_IMAGE
-              value: k8s.gcr.io/sig-storage/local-volume-provisioner:v2.4.0
-          image: k8s.gcr.io/sig-storage/local-volume-provisioner:v2.4.0
+              value: registry.k8s.io/sig-storage/local-volume-provisioner:v2.5.0
+          image: registry.k8s.io/sig-storage/local-volume-provisioner:v2.5.0
           name: provisioner
           ports:
             - containerPort: 8080
@@ -46,6 +46,14 @@ spec:
               readOnly: true
             - mountPath: /dev
               name: provisioner-dev
+            - mountPath: /var/lib/rancher/local-volume/ssd/
+              mountPropagation: HostToContainer
+              name: ssd
+            - mountPath: /var/lib/rancher/local-volume/ssd-retain/
+              mountPropagation: HostToContainer
+              name: ssd-retain
+      nodeSelector:
+        kubernetes.io/os: linux
       serviceAccountName: local-volume-provisioner
       volumes:
         - configMap:
@@ -54,3 +62,9 @@ spec:
         - hostPath:
             path: /dev
           name: provisioner-dev
+        - hostPath:
+            path: /var/lib/rancher/local-volume/ssd/
+          name: ssd
+        - hostPath:
+            path: /var/lib/rancher/local-volume/ssd-retain/
+          name: ssd-retain
