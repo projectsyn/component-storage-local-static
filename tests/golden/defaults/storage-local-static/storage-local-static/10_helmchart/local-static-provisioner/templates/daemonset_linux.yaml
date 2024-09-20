@@ -5,7 +5,7 @@ metadata:
     app.kubernetes.io/instance: local-volume-provisioner
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: local-static-provisioner
-    helm.sh/chart: local-static-provisioner-1.0.0
+    helm.sh/chart: local-static-provisioner-2.0.0
   name: local-volume-provisioner-local-static-provisioner
   namespace: syn-storage-local-static
 spec:
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: d5cc51490cc01ac84caa83af09f54d8e748cd4d027a1314886428ef690081860
+        checksum/config: 8a2bc6aec127fdc2067110690e8e5e1c51bdcbe7bbb30bf38f83b05a35c85843
       labels:
         app.kubernetes.io/instance: local-volume-provisioner
         app.kubernetes.io/name: local-static-provisioner
