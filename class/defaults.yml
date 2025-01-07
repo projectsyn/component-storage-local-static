@@ -1,6 +1,7 @@
 parameters:
   storage_local_static:
-    =_metadata: {}
+    =_metadata:
+      multi_tenant: true
     namespace: syn-storage-local-static
 
     manifestsVersion: v2.7.0
