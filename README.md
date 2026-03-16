@@ -1,3 +1,8 @@
+# :warning: Repo Archive Notice
+
+As of March 16, 2026, this component is deprecated and will no longer be updated.
+You may use the topolvm component instead.
+
 # Commodore Component: storage-local-static
 
 This is a [Commodore][commodore] Component for storage-local-static.
