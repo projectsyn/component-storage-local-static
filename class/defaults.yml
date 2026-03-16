@@ -2,6 +2,12 @@ parameters:
   storage_local_static:
     =_metadata:
       multi_tenant: true
+      deprecated: true
+      replaced_by: topolvm
+      deprecation_notice: >-
+        This component is deprecated and will no longer be maintained.
+        You may use the topolvm component instead.
+
     namespace: syn-storage-local-static
 
     manifestsVersion: v2.7.0
